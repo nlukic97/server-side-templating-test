@@ -32,4 +32,30 @@ function renderContent(content){
     
 }
 
-module.exports = {renderContent}
+function renderNavAndContent(content){
+    return new Promise((resolve, reject)=>{
+        // first adding the content
+        fs.readFile('./content/code.html', 'utf8', (err, data) => {
+            if (err) {
+                return reject(err)
+            }
+            let fullData
+
+            fullData = data.replace('<!-- $content$ -->',content)
+
+            // ...then, adding the nav
+            // TODO - replace this with try catch block
+            fs.readFile('./content/nav.nick', 'utf8', (err, data) => {
+                if (err) {
+                    return reject(err)
+                }
+    
+                fullData = fullData.replace('<!-- $nav$ -->',data)
+                return resolve(fullData)
+            })
+        })
+    })
+    
+}
+
+module.exports = {renderContent, renderNavAndContent}

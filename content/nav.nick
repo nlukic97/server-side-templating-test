@@ -1,0 +1,8 @@
+<nav>
+    <h1 style="color:red">------------  nav.nick ------------</h1>
+    <a href="/">home</a>
+    <a href="/about">about</a>
+    <a href="/special">special</a>
+    <a href="/*">404</a>
+    <h1 style="color:red">------------  nav.nick ------------</h1>
+</nav>

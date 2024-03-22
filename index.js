@@ -1,7 +1,7 @@
 const express = require('express');
 const { createServer } = require('node:http');
 
-const {renderContent} = require('./content/renderContent')
+const {renderContent, renderNavAndContent} = require('./content/renderContent')
 
 const app = express();
 const server = createServer(app);
@@ -19,6 +19,15 @@ app.get('/about', async (_, res) => {
     try {
         const content = '<h1>About page</h1>'
         return res.send(await renderContent(content));
+    } catch(err){
+        return res.send(err)
+    }
+});
+
+app.get('/special', async (_, res) => {
+    try {
+        const content = '<h1>special page</h1>'
+        return res.send(await renderNavAndContent(content));
     } catch(err){
         return res.send(err)
     }
